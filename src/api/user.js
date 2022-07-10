@@ -5,6 +5,7 @@ import request from '../utils/request'
  * @returns
  */
 const getLogin = (data) => {
+  // console.log('datauserform===>', data)
   return request({ url: '/users/login', method: 'POST', data })
 }
 /**

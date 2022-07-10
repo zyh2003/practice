@@ -25,10 +25,15 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   function (response) {
-    // 对响应数据做点什么
-    // 解决token错误或是过期
-    // 把response的data返回给客户端, 不需要可以删除下面1句代码
-    return response
+    const token = response.data.data.token
+    if (token) {
+      // console.log('11',token);
+      store.commit('user/SET_TOKEN', token)
+    }
+    if (response.data.code === 200) {
+      return response.data
+    }
+    // return response
   },
   function (error) {
     // 对响应错误做点什么
